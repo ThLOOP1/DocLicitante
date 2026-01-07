@@ -9,7 +9,7 @@ export function AppHeader() {
     return (
         <header className="border-b border-border bg-card">
             <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-                <Link href="/" className="flex items-center gap-2">
+                <Link href="/Dashboard" className="flex items-center gap-2">
                     <FileCheck className="h-7 w-7 text-primary" />
                     <h1 className="text-2xl font-semibold text-foreground">DocLicitante</h1>
                 </Link>

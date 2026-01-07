@@ -30,7 +30,7 @@ export function NovoDocumentoModal({ open, onOpenChange, onCriar, empresaId }: N
         if (open && empresaId) {
             const fetchCategorias = async () => {
                 try {
-                    const response = await fetch(`http://localhost:3001/api/empresas/${empresaId}/categorias`)
+                    const response = await fetch(`/api/empresas/${empresaId}/categorias`)
                     if (response.ok) {
                         const data = await response.json()
                         setCategorias(data.todas || data.padrao)

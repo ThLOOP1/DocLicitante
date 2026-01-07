@@ -123,3 +123,52 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-xl border border-white/20 shadow-lg;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-blue-700 bg-clip-text text-transparent;
+  }
+  
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+  
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24;
+  }
+  
+  .container-narrow {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 40px -10px hsl(217 91% 60% / 0.3);
+  }
+
+  .shadow-glow-lg {
+    box-shadow: 0 0 60px -10px hsl(217 91% 60% / 0.4);
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}

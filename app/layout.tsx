@@ -15,16 +15,12 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/icon-light-32x32.png",
-        media: "(prefers-color-scheme: light)",
+        url: "/Logo_escuro.png",
+        media: "(prefers-color-scheme: light)", // Navegador em modo claro
       },
       {
-        url: "/icon-dark-32x32.png",
-        media: "(prefers-color-scheme: dark)",
-      },
-      {
-        url: "/icon.svg",
-        type: "image/svg+xml",
+        url: "/Logo_claro.png",
+        media: "(prefers-color-scheme: dark)", // Navegador em modo escuro
       },
     ],
     apple: "/apple-icon.png",
@@ -47,3 +43,4 @@ export default function RootLayout({
     </html>
   )
 }
+

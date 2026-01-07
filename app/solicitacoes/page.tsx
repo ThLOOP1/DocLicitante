@@ -68,7 +68,7 @@ function SolicitacoesContent() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Link href="/" className="flex items-center gap-2">
+              <Link href="/Dashboard" className="flex items-center gap-2">
                 <FileCheck className="h-7 w-7 text-primary" />
                 <h1 className="text-2xl font-semibold text-foreground">DocLicitante</h1>
               </Link>
@@ -82,7 +82,7 @@ function SolicitacoesContent() {
         <div className="container mx-auto px-6">
           <div className="flex gap-6">
             <Link
-              href="/"
+              href="/Dashboard"
               className="py-3 px-1 border-b-2 border-transparent text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               Inicial

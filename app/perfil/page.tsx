@@ -62,7 +62,7 @@ export default function PerfilPage() {
         params.append('donoEmail', user.email)
       }
 
-      const url = `http://localhost:3001/api/empresas?${params.toString()}`
+      const url = `/api/empresas?${params.toString()}`
       console.log('[Perfil] URL da requisição:', url)
 
       const response = await fetch(url)
@@ -103,7 +103,7 @@ export default function PerfilPage() {
     }
 
     try {
-      const response = await fetch(`http://localhost:3001/api/empresas/${id}`, {
+      const response = await fetch(`/api/empresas/${id}`, {
         method: "DELETE"
       })
 
@@ -131,7 +131,7 @@ export default function PerfilPage() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Link href="/" className="flex items-center gap-2">
+              <Link href="/Dashboard" className="flex items-center gap-2">
                 <FileCheck className="h-7 w-7 text-primary" />
                 <h1 className="text-2xl font-semibold text-foreground">DocLicitante</h1>
               </Link>
@@ -145,7 +145,7 @@ export default function PerfilPage() {
       <nav className="border-b border-border bg-card">
         <div className="container mx-auto px-6">
           <div className="flex gap-6">
-            <Link href="/" className="py-3 px-1 border-b-2 border-transparent text-sm font-medium text-muted-foreground">
+            <Link href="/Dashboard" className="py-3 px-1 border-b-2 border-transparent text-sm font-medium text-muted-foreground">
               Inicial
             </Link>
             <Link href="/empresas" className="py-3 px-1 border-b-2 border-transparent text-sm font-medium text-muted-foreground">

@@ -115,7 +115,7 @@ export default function CadastroPage() {
       // Aguardar 1.5s para o usuário ver a mensagem, depois redirecionar
       // O usuário já está autenticado automaticamente pelo createUserWithEmailAndPassword
       setTimeout(() => {
-        router.push("/")
+        router.push("/Dashboard")
       }, 1500)
 
     } catch (error: any) {
@@ -157,7 +157,7 @@ export default function CadastroPage() {
             toast.success("✅ Conta recuperada e atualizada! Redirecionando...")
 
             setTimeout(() => {
-              router.push("/")
+              router.push("/Dashboard")
             }, 1500)
             return
           } else {

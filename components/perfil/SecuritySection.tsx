@@ -104,7 +104,7 @@ export function SecuritySection({ userUID }: SecuritySectionProps) {
                     if (docData.arquivo?.fileId) {
                         try {
                             console.log(`[SecuritySection] Deletando arquivo do Drive: ${docData.arquivo.fileId}`)
-                            await fetch(`http://localhost:3001/api/drive/delete/${docData.arquivo.fileId}`, {
+                            await fetch(`/api/drive/delete/${docData.arquivo.fileId}`, {
                                 method: 'DELETE'
                             })
                         } catch (driveError) {
@@ -120,7 +120,7 @@ export function SecuritySection({ userUID }: SecuritySectionProps) {
                 if (empresaData.driveFolder?.folderId) {
                     try {
                         console.log(`[SecuritySection] Deletando pasta da empresa no Drive: ${empresaData.driveFolder.folderId}`)
-                        await fetch(`http://localhost:3001/api/drive/delete/${empresaData.driveFolder.folderId}`, {
+                        await fetch(`/api/drive/delete/${empresaData.driveFolder.folderId}`, {
                             method: 'DELETE'
                         })
                     } catch (driveError) {

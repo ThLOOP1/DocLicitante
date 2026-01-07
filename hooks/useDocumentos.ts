@@ -24,19 +24,19 @@ export function useDocumentos({ empresaId }: UseDocumentosProps) {
 
         try {
             // 1. Buscar todos os documentos anexados do Firestore
-            const response = await fetch(`http://localhost:3001/api/empresas/${empresaId}/documentos`)
+            const response = await fetch(`/api/empresas/${empresaId}/documentos`)
             const allUploadedDocs = response.ok ? await response.json() : []
 
             const certsUploaded = allUploadedDocs.filter((d: any) => d.tipo === 'certidao')
             const geraisUploaded = allUploadedDocs.filter((d: any) => d.tipo === 'geral')
 
             // 2. Buscar documentos customizados (templates criados pelo usuário)
-            const customDocsResponse = await fetch(`http://localhost:3001/api/empresas/${empresaId}/custom-docs`)
+            const customDocsResponse = await fetch(`/api/empresas/${empresaId}/custom-docs`)
             const customTemplates = customDocsResponse.ok ? await customDocsResponse.json() : []
 
             // 3. Buscar categorias (com fallback para 404)
             try {
-                const categoriesResponse = await fetch(`http://localhost:3001/api/empresas/${empresaId}/categorias`)
+                const categoriesResponse = await fetch(`/api/empresas/${empresaId}/categorias`)
                 if (categoriesResponse.ok) {
                     const catData = await categoriesResponse.json()
                     setAllCategories(catData.todas)
@@ -114,7 +114,7 @@ export function useDocumentos({ empresaId }: UseDocumentosProps) {
         setUploading(true)
         try {
             formData.append('tipo', tipo)
-            const response = await fetch(`http://localhost:3001/api/empresas/${empresaId}/documentos`, {
+            const response = await fetch(`/api/empresas/${empresaId}/documentos`, {
                 method: 'POST',
                 body: formData
             })
@@ -137,7 +137,7 @@ export function useDocumentos({ empresaId }: UseDocumentosProps) {
     const handleDeleteDocumento = async (docId: string) => {
         if (!confirm("Tem certeza que deseja excluir este documento?")) return
         try {
-            const response = await fetch(`http://localhost:3001/api/documentos/${docId}`, {
+            const response = await fetch(`/api/documentos/${docId}`, {
                 method: 'DELETE'
             })
             if (response.ok) {

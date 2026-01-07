@@ -55,7 +55,7 @@ function EmpresasContent() {
       const params = new URLSearchParams({ donoUid: userUID })
       if (user?.email) params.append('donoEmail', user.email)
 
-      const response = await fetch(`http://localhost:3001/api/empresas?${params.toString()}`)
+      const response = await fetch(`/api/empresas?${params.toString()}`)
       const data = await response.json()
 
       if (response.ok) {
@@ -74,7 +74,7 @@ function EmpresasContent() {
     if (!userUID) return
 
     try {
-      const response = await fetch(`http://localhost:3001/api/empresas/vencimentos-stats?donoUid=${userUID}`)
+      const response = await fetch(`/api/empresas/vencimentos-stats?donoUid=${userUID}`)
       const data = await response.json()
       if (response.ok) setVencimentosStats(data)
     } catch (error) {
@@ -121,7 +121,7 @@ function EmpresasContent() {
       <nav className="border-b border-border bg-card">
         <div className="container mx-auto px-6">
           <div className="flex gap-6">
-            <Link href="/" className="py-3 px-1 border-b-2 border-transparent text-sm font-medium text-muted-foreground hover:text-foreground">
+            <Link href="/Dashboard" className="py-3 px-1 border-b-2 border-transparent text-sm font-medium text-muted-foreground hover:text-foreground">
               Inicial
             </Link>
             <Link href="/empresas" className="py-3 px-1 border-b-2 border-primary text-sm font-medium text-foreground">

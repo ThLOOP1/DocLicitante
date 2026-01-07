@@ -7,15 +7,15 @@ export function AppNav() {
     const pathname = usePathname()
 
     const navItems = [
-        { name: "Inicial", href: "/" },
+        { name: "Inicial", href: "/Dashboard" },
         { name: "Minhas Empresas", href: "/empresas" },
         // { name: "Solicitações", href: "/solicitacoes" },
         { name: "Notificações", href: "/notificacoes" },
     ]
 
     const isActive = (href: string) => {
-        if (href === "/" && pathname === "/") return true
-        if (href !== "/" && pathname.startsWith(href)) return true
+        if (href === "/Dashboard" && pathname === "/Dashboard") return true
+        if (href !== "/Dashboard" && pathname.startsWith(href)) return true
         return false
     }
 

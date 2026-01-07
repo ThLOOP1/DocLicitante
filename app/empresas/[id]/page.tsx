@@ -46,7 +46,7 @@ export default function EmpresaDetalhesPage() {
   useEffect(() => {
     const fetchEmpresa = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/api/empresas/${id}`)
+        const response = await fetch(`/api/empresas/${id}`)
         if (response.ok) {
           const data = await response.json()
           setEmpresa(data)
@@ -78,7 +78,7 @@ export default function EmpresaDetalhesPage() {
 
   const handleCriarNovoDocumento = async (nome: string, categoria: string) => {
     try {
-      const response = await fetch(`http://localhost:3001/api/empresas/${id}/custom-docs`, {
+      const response = await fetch(`/api/empresas/${id}/custom-docs`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nome, categoria, empresaId: id, tipo: 'certidao', placeholder: true })
@@ -94,7 +94,7 @@ export default function EmpresaDetalhesPage() {
 
   const handleCriarNovaCategoria = async (nome: string) => {
     try {
-      const response = await fetch(`http://localhost:3001/api/empresas/${id}/categorias`, {
+      const response = await fetch(`/api/empresas/${id}/categorias`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nome })
@@ -189,7 +189,7 @@ export default function EmpresaDetalhesPage() {
               <Button
                 variant="outline"
                 className="gap-2 shadow-sm border-primary/20 hover:bg-primary/5 text-primary"
-                onClick={() => window.location.href = `http://localhost:3001/api/empresas/${id}/documentos/download-all`}
+                onClick={() => window.location.href = `/api/empresas/${id}/documentos/download-all`}
               >
                 <Download className="h-4 w-4" /> Download ZIP Completo
               </Button>

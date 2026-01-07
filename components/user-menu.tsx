@@ -35,7 +35,7 @@ export function UserMenu() {
       }
 
       try {
-        const response = await fetch(`http://localhost:3001/api/users/${userUID}`)
+        const response = await fetch(`/api/users/${userUID}`)
         const data = await response.json()
         if (response.ok) {
           setUserData({

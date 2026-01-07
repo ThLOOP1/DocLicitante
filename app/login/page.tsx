@@ -41,8 +41,8 @@ export default function LoginPage() {
       console.log('[Login] Login bem-sucedido! UID:', userCredential.user.uid)
       toast.success(`Bem-vindo de volta!`)
 
-      // Redirecionar para a página inicial
-      router.push("/")
+      // Redirecionar para o dashboard
+      router.push("/Dashboard")
     } catch (error: any) {
       console.error('[Login] Erro ao fazer login:', error.code, error.message)
 
