@@ -1,149 +1,149 @@
 ﻿"use client"
 
-import { motion } from "framer-motion";
-import { Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import Link from "next/link"
+import { Check, HelpCircle } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
-const plans = [
+const PLANS = [
   {
-    name: "Essencial",
+    name: "Starter",
     price: "Grátis",
-    priceNote: "Para sempre",
-    description: "Perfeito para começar a organizar seus documentos.",
+    description: "Para quem está participando das primeiras licitações.",
     features: [
-      "Documentos ilimitados",
+      "Até 10 documentos",
       "Alertas por e-mail",
       "Busca básica",
       "Suporte por e-mail",
+      "Gestão de 1 Empresa",
     ],
-    cta: "Começar Grátis",
-    link: "/cadastro",
+    cta: "Começar Agora",
+    href: "/cadastro",
     popular: false,
   },
-  // {
-  //   name: "Pro",
-  //   price: "R$ 97",
-  //   priceNote: "por mês",
-  //   description: "Para empresas que participam de licitações regularmente.",
-  //   features: [
-  //     "Documentos ilimitados",
-  //     "Monitoramento automático",
-  //     "Alertas via WhatsApp",
-  //     "Busca inteligente (OCR)",
-  //     "Relatórios avançados",
-  //     "Suporte prioritário",
-  //     "API de integração",
-  //   ],
-  //   cta: "Testar por 14 dias",
-  //   link: "/cadastro",
-  //   popular: true,
-  // },
-];
+  {
+    name: "Pro",
+    price: "R$ 97",
+    period: "/ mês",
+    description: "O controle total para empresas em crescimento.",
+    features: [
+      "Documentos Ilimitados",
+      "Controle de Vencimento Dinâmico",
+      "Alertas WhatsApp & E-mail",
+      "Busca Inteligente (OCR)",
+      "Gestão Multi-Empresas (Até 5)",
+      "Sync com Google Drive",
+    ],
+    cta: "Testar Grátis por 14 Dias",
+    href: "/cadastro",
+    popular: true,
+  },
+  {
+    name: "Enterprise",
+    price: "Sob Consulta",
+    description: "Soluções customizadas para grandes grupos econômicos.",
+    features: [
+      "Empresas Ilimitadas",
+      "API de Integração",
+      "Single Sign-On (SSO)",
+      "Painel de Auditoria",
+      "Gerente de Sucesso (CSM)",
+      "Treinamento de Equipe",
+    ],
+    cta: "Falar com Consultor",
+    href: "#contato",
+    popular: false,
+  },
+]
 
 export function PricingSection() {
   return (
-    <section id="precos" className="section-padding bg-muted/30">
-      <div className="container-narrow mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12 lg:mb-16"
-        >
-          <span className="inline-block text-sm font-semibold text-primary uppercase tracking-wide mb-3">
-            Preços
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-4">
-            Planos simples,{" "}
-            <span className="gradient-text">sem surpresas.</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Escolha o plano ideal para sua empresa. Cancele quando quiser.
+    <section id="planos" className="py-24 bg-slate-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16 space-y-4">
+          <h2 className="text-sm font-bold text-indigo-600 uppercase tracking-widest">Preços</h2>
+          <p className="text-3xl sm:text-4xl font-extrabold text-slate-900">
+            Escalável para <span className="text-indigo-600">cada etapa</span> do seu negócio.
           </p>
-        </motion.div>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            Sem taxas escondidas. Cancele ou altere seu plano a qualquer momento.
+          </p>
+        </div>
 
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
-          {plans.map((plan, index) => (
-            <motion.div
-              key={plan.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative"
+        <div className="grid md:grid-cols-3 gap-8 items-start">
+          {PLANS.map((plan, index) => (
+            <Card
+              key={index}
+              className={`relative rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl ${plan.popular
+                  ? "border-indigo-600 border-4 shadow-xl -translate-y-4 scale-105 z-10"
+                  : "border-slate-200 border-2"
+                }`}
             >
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                  <span className="bg-primary text-primary-foreground text-sm font-semibold px-4 py-1.5 rounded-full shadow-glow">
-                    Mais Popular
-                  </span>
+                <div className="absolute top-0 right-0 py-1.5 px-4 bg-indigo-600 text-white text-[10px] font-black uppercase tracking-widest rounded-bl-xl shadow-sm">
+                  Mais Recomendado
                 </div>
               )}
 
-              <div
-                className={`h-full rounded-3xl p-6 lg:p-8 transition-all ${plan.popular
-                  ? "bg-card border-2 border-primary shadow-glow-lg"
-                  : "bg-card border border-border"
-                  }`}
-              >
-                <div className="mb-6">
-                  <h3 className="text-xl font-semibold text-foreground mb-2">
-                    {plan.name}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    {plan.description}
-                  </p>
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-4xl lg:text-5xl font-bold text-foreground">
-                      {plan.price}
-                    </span>
-                    <span className="text-muted-foreground">/{plan.priceNote}</span>
-                  </div>
+              <CardHeader className="pt-10 text-center space-y-2">
+                <CardTitle className="text-xl font-bold text-slate-900 uppercase tracking-wide">{plan.name}</CardTitle>
+                <div className="flex items-baseline justify-center">
+                  <span className="text-4xl font-black text-slate-900">{plan.price}</span>
+                  <span className="text-slate-500 font-medium ml-1">{plan.period}</span>
                 </div>
+                <CardDescription className="text-slate-500 pt-2 min-h-[48px]">
+                  {plan.description}
+                </CardDescription>
+              </CardHeader>
 
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-3">
-                      <div className={`w-5 h-5 rounded-full flex items-center justify-center ${plan.popular ? "bg-primary/10" : "bg-muted"
-                        }`}>
-                        <Check className={`h-3.5 w-3.5 ${plan.popular ? "text-primary" : "text-muted-foreground"
-                          }`} />
+              <CardContent className="space-y-4 pt-4">
+                <div className="space-y-4">
+                  {plan.features.map((feature, fIndex) => (
+                    <div key={fIndex} className="flex items-center gap-3">
+                      <div className={`shrink-0 h-5 w-5 rounded-full flex items-center justify-center ${plan.popular ? "bg-indigo-600" : "bg-indigo-100"}`}>
+                        <Check className={`h-3 w-3 ${plan.popular ? "text-white" : "text-indigo-600"}`} />
                       </div>
-                      <span className="text-foreground text-sm">{feature}</span>
-                    </li>
+                      <span className="text-sm font-medium text-slate-700">{feature}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
+              </CardContent>
 
-                <Link href={plan.link}>
+              <CardFooter className="pb-10 pt-6">
+                <Link href={plan.href} className="w-full">
                   <Button
-                    variant={plan.popular ? "hero" : "outline"}
-                    size="lg"
-                    className="w-full"
+                    variant={plan.popular ? "default" : "outline"}
+                    className={`w-full h-12 rounded-xl font-bold text-sm shadow-md transition-all ${plan.popular
+                        ? "bg-indigo-600 hover:bg-indigo-700 text-white shadow-indigo-200"
+                        : "border-indigo-600 text-indigo-600 hover:bg-indigo-50"
+                      }`}
                   >
                     {plan.cta}
                   </Button>
                 </Link>
-              </div>
-            </motion.div>
+              </CardFooter>
+            </Card>
           ))}
         </div>
 
-        {/* FAQ Teaser */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center mt-10 text-sm text-muted-foreground"
-        >
-          Tem dúvidas?{" "}
-          <Link href="/contato" className="text-primary hover:underline font-medium">
-            Fale com nosso time
-          </Link>
-        </motion.p>
+        <div className="mt-16 text-center">
+          <TooltipProvider>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-slate-200 text-sm text-slate-500 font-medium cursor-help hover:border-indigo-200 transition-colors">
+              Dúvidas sobre qual plano escolher?
+              <Tooltip>
+                <TooltipTrigger>
+                  <HelpCircle className="h-4 w-4 text-indigo-600" />
+                </TooltipTrigger>
+                <TooltipContent className="bg-slate-900 text-white border-none p-3 max-w-xs text-xs">
+                  <p>Nosso time de consultores está pronto para analisar sua base documental e sugerir a melhor configuração.</p>
+                </TooltipContent>
+              </Tooltip>
+              <Link href="#contato" className="text-indigo-600 font-bold hover:underline">Fale conosco</Link>
+            </div>
+          </TooltipProvider>
+        </div>
       </div>
     </section>
-  );
+  )
 }

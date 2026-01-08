@@ -1,123 +1,116 @@
 ﻿"use client"
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Image from "next/image";
-
-const logoUrl = "/logo/logo.png";
-
-const navLinks = [
-  { label: "Funcionalidades", href: "#funcionalidades" },
-  { label: "Preços", href: "#precos" },
-  { label: "Sobre", href: "#sobre" },
-  { label: "Blog", href: "#blog" },
-];
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import { FileText, Menu, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
-      <div className="container-narrow mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white/80 backdrop-blur-md shadow-sm border-b" : "bg-transparent"
+        }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
-            <div className="relative h-9 w-32">
-              <Image
-                src={logoUrl}
-                alt="DocLicitante"
-                fill
-                className="object-contain"
-                priority
-              />
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="p-1.5 bg-indigo-600 rounded-lg group-hover:bg-indigo-700 transition-colors">
+              <FileText className="h-6 w-6 text-white" />
             </div>
-            <span className="text-xl font-semibold tracking-tight hidden sm:block">
-              <span className="text-primary">Doc</span>
-              <span className="text-foreground">Licitante</span>
+            <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-900 to-indigo-600">
+              DocLicitante
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+          <div className="hidden md:flex items-center gap-8">
+            <Link href="#funcionalidades" className="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">
+              Funcionalidades
+            </Link>
+            <Link href="#planos" className="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">
+              Planos
+            </Link>
+            <Link href="#sobre" className="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">
+              Sobre
+            </Link>
           </div>
 
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-3">
+          {/* Desktop Auth Buttons */}
+          <div className="hidden md:flex items-center gap-3">
             <Link href="/login">
-              <Button variant="ghost" size="default">
+              <Button variant="ghost" size="sm" className="font-semibold text-indigo-600">
                 Entrar
               </Button>
             </Link>
             <Link href="/cadastro">
-              <Button variant="pill" size="default">
+              <Button size="sm" className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-full px-5">
                 Começar Grátis
               </Button>
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2 -mr-2"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? (
-              <X className="h-6 w-6 text-foreground" />
-            ) : (
-              <Menu className="h-6 w-6 text-foreground" />
-            )}
-          </button>
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 text-slate-600 hover:text-indigo-600"
+            >
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-background border-b border-border"
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-white border-b absolute w-full left-0 p-4 space-y-4 shadow-lg animate-in slide-in-from-top duration-300">
+          <Link
+            href="#funcionalidades"
+            className="block text-base font-medium text-slate-600 px-2 py-1"
+            onClick={() => setIsMobileMenuOpen(false)}
           >
-            <div className="px-4 py-4 space-y-3">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="block py-2 text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
-              <div className="pt-4 flex flex-col gap-2">
-                <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="w-full">
-                  <Button variant="outline" className="w-full">
-                    Entrar
-                  </Button>
-                </Link>
-                <Link href="/cadastro" onClick={() => setMobileMenuOpen(false)} className="w-full">
-                  <Button variant="pill" className="w-full">
-                    Começar Grátis
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            Funcionalidades
+          </Link>
+          <Link
+            href="#planos"
+            className="block text-base font-medium text-slate-600 px-2 py-1"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Planos
+          </Link>
+          <Link
+            href="#sobre"
+            className="block text-base font-medium text-slate-600 px-2 py-1"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Sobre
+          </Link>
+          <div className="pt-4 border-t flex flex-col gap-2">
+            <Link href="/login" className="w-full">
+              <Button variant="ghost" className="w-full text-indigo-600 font-semibold" onClick={() => setIsMobileMenuOpen(false)}>
+                Entrar
+              </Button>
+            </Link>
+            <Link href="/cadastro" className="w-full">
+              <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-full" onClick={() => setIsMobileMenuOpen(false)}>
+                Começar Grátis
+              </Button>
+            </Link>
+          </div>
+        </div>
+      )}
     </nav>
-  );
+  )
 }
