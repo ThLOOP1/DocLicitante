@@ -18,7 +18,7 @@ const features = [
   },
   {
     icon: MessageSquare,
-    title: "Alertas via WhatsApp",
+    title: "Alertas via E-mail",
     description: "Receba avisos personalizados antes do vencimento, direto no seu celular.",
     size: "medium",
   },

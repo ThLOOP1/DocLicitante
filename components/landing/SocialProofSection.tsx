@@ -3,12 +3,12 @@
 import { motion } from "framer-motion";
 
 const companies = [
-  { name: "Construtora Alpha" },
-  { name: "Engenharia Beta" },
-  { name: "Tech Solutions" },
-  { name: "Grupo Delta" },
-  { name: "Serviços Omega" },
-  { name: "Industrial Sigma" },
+  { name: "GLL Engenharia" },
+  { name: "One Emprendimento" },
+  { name: "GAL BENDER" },
+  { name: "Varejão Galb" },
+  { name: "EV de Moura" },
+  { name: "GLL Construtora" },
 ];
 
 export function SocialProofSection() {
@@ -61,8 +61,8 @@ export function SocialProofSection() {
           className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-8"
         >
           {[
-            { value: "500+", label: "Empresas ativas" },
-            { value: "15.000+", label: "Documentos monitorados" },
+            { value: "50+", label: "Empresas ativas" },
+            { value: "1.000+", label: "Documentos monitorados" },
             { value: "99.9%", label: "Uptime garantido" },
             { value: "R$ 2M+", label: "Economizados em multas" },
           ].map((stat) => (

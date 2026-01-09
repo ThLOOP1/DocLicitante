@@ -21,24 +21,24 @@ const plans = [
     href: "/cadastro",
     popular: false,
   },
-  {
-    name: "Pro",
-    price: "R$ 97",
-    priceNote: "por mês",
-    description: "Para empresas que participam de licitações regularmente.",
-    features: [
-      "Documentos ilimitados",
-      "Monitoramento automático",
-      "Alertas via WhatsApp",
-      "Busca inteligente (OCR)",
-      "Relatórios avançados",
-      "Suporte prioritário",
-      "API de integração",
-    ],
-    cta: "Testar por 14 dias",
-    href: "/cadastro",
-    popular: true,
-  },
+  // {
+  //   name: "Pro",
+  //   price: "R$ 97",
+  //   priceNote: "por mês",
+  //   description: "Para empresas que participam de licitações regularmente.",
+  //   features: [
+  //     "Documentos ilimitados",
+  //     "Monitoramento automático",
+  //     "Alertas via WhatsApp",
+  //     "Busca inteligente (OCR)",
+  //     "Relatórios avançados",
+  //     "Suporte prioritário",
+  //     "API de integração",
+  //   ],
+  //   cta: "Testar por 14 dias",
+  //   href: "/cadastro",
+  //   popular: true,
+  // },
 ];
 
 export function PricingSection() {
@@ -84,8 +84,8 @@ export function PricingSection() {
 
               <div
                 className={`h-full rounded-3xl p-6 lg:p-8 transition-all ${plan.popular
-                    ? "bg-card border-2 border-primary shadow-glow-lg"
-                    : "bg-card border border-border"
+                  ? "bg-card border-2 border-primary shadow-glow-lg"
+                  : "bg-card border border-border"
                   }`}
               >
                 <div className="mb-6">

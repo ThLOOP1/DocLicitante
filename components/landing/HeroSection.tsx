@@ -49,7 +49,7 @@ export function HeroSection() {
             {/* CTA */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button variant="hero" size="xl">
-                Testar Grátis por 14 Dias
+                Testar agora
               </Button>
             </div>
 

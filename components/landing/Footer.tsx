@@ -23,8 +23,8 @@ const footerLinks = {
 };
 
 const contactInfo = {
-  phone: "(98) 99999-9999",
-  email: "teste@gmail.com",
+  phone: "(98) 8119-4177",
+  email: "contatodoclicitante@gmail.com",
 };
 
 export function Footer() {
