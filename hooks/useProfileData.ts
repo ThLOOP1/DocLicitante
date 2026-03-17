@@ -22,6 +22,8 @@ export interface UserData {
     }
     role?: string
     statusConta?: 'ativo' | 'pendente' | 'suspenso'
+    notificacoesEmail?: boolean
+    telegramChatId?: string
 }
 
 export function useProfileData(authUserData: any, userEmail: string | undefined, authLoading: boolean) {
@@ -42,6 +44,8 @@ export function useProfileData(authUserData: any, userEmail: string | undefined,
             cidade: '',
             estado: '',
         },
+        notificacoesEmail: true,
+        telegramChatId: '',
     })
     const [loading, setLoading] = useState(true)
     const [saving, setSaving] = useState(false)
@@ -62,6 +66,8 @@ export function useProfileData(authUserData: any, userEmail: string | undefined,
                     dataNascimento: authUserData.dataNascimento || '',
                     genero: authUserData.genero || undefined,
                     cargo: authUserData.cargo || '',
+                    notificacoesEmail: authUserData.notificacoesEmail !== undefined ? authUserData.notificacoesEmail : true,
+                    telegramChatId: authUserData.telegramChatId || '',
                     // Compatibilidade: se o usuário antigo não tem objeto endereco, criar vazio
                     endereco: authUserData.endereco ? {
                         cep: authUserData.endereco.cep || '',
@@ -128,6 +134,8 @@ export function useProfileData(authUserData: any, userEmail: string | undefined,
                 dataNascimento: userData.dataNascimento,
                 genero: userData.genero,
                 cargo: userData.cargo,
+                notificacoesEmail: userData.notificacoesEmail,
+                telegramChatId: userData.telegramChatId,
                 endereco: userData.endereco,
                 updatedAt: new Date().toISOString(),
             })

@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react"
 import { useAuth } from "@/contexts/AuthContext"
-import { Bell, Building2, FileCheck, AlertCircle, Users, Loader2 } from "lucide-react"
+import { Building2, FileCheck, AlertCircle, Users, Loader2 } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { UserMenu } from "@/components/user-menu"
+import { NotificationBell } from "@/components/layout/NotificationBell"
 import { toast } from "sonner"
 import { formatarDataBR } from "@/lib/formatters"
 
@@ -94,14 +95,7 @@ export default function DashboardPage() {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <Button variant="ghost" size="icon" className="relative">
-                <Bell className="h-5 w-5" />
-                {statsData.certidoesVencendo > 0 && (
-                  <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-destructive text-[10px] font-medium flex items-center justify-center text-destructive-foreground">
-                    {statsData.certidoesVencendo}
-                  </span>
-                )}
-              </Button>
+              <NotificationBell />
               <UserMenu />
             </div>
           </div>

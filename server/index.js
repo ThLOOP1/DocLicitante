@@ -24,6 +24,7 @@ const db = admin.firestore();
 const auth = admin.auth();
 const bucket = admin.storage().bucket();
 const driveService = require('./services/driveService');
+const notificationService = require('./services/notificationService'); // Adicionado o NotificationService
 
 // Configuração do Multer para upload de arquivos
 const multer = require('multer');
@@ -1185,6 +1186,45 @@ app.get('/api/empresas/:id/categorias', async (req, res) => {
     } catch (error) {
         console.error('❌ [BACKEND] Erro ao listar categorias:', error);
         res.status(500).json({ error: error.message });
+    }
+});
+
+// --- ROTAS DE NOTIFICAÇÃO E CRON ---
+
+// Webhook Telegram - Para capturar o ID quando o usuário der /start no bot
+app.post('/api/telegram/webhook', async (req, res) => {
+    // A rota original do telegram bot pode ser gerenciada diretamente pelo Telegraf
+    // mas se quisermos uma rota express manualmente:
+    const { message } = req.body;
+    if (message && message.text === '/start') {
+        const chatId = message.chat.id;
+        // Na prática, o telegram deve mandar isso de uma forma que vincule
+        // No momento o bot apenas responderá pelo seu próprio serviço se rodado inline.
+    }
+    res.send('OK');
+});
+
+// Endpoint Gatilho (Cron-job.org) para disparar notificações
+app.get('/api/cron/check-vencimentos', async (req, res) => {
+    const triggerKey = req.headers['x-cron-key'];
+    
+    // Verificacao rigorosa (Idêntica e Case Sensitive) do header de segurança
+    if (!triggerKey || triggerKey !== process.env.CRON_SECRET_KEY) {
+        console.warn('⚠️ [CRON] Tentativa não autorizada de executar o cron job.');
+        return res.status(401).json({ error: 'Acesso negado. Chave de cron inválida.' });
+    }
+
+    try {
+        const resultado = await notificationService.checkAndSendAlerts();
+        res.status(200).json({
+            message: 'Verificação de vencimentos concluída com sucesso.',
+            ...resultado
+        });
+    } catch (error) {
+        res.status(500).json({
+            error: 'Erro durante o processamento de vencimentos.',
+            detalhe: error.message
+        });
     }
 });
 

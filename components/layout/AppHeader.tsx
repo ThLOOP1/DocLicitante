@@ -1,9 +1,10 @@
 "use client"
 
-import { FileCheck, Bell } from "lucide-react"
+import { FileCheck } from "lucide-react"
+
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
 import { UserMenu } from "@/components/user-menu"
+import { NotificationBell } from "@/components/layout/NotificationBell"
 
 export function AppHeader() {
     return (
@@ -14,9 +15,7 @@ export function AppHeader() {
                     <h1 className="text-2xl font-semibold text-foreground">DocLicitante</h1>
                 </Link>
                 <div className="flex items-center gap-3">
-                    <Button variant="ghost" size="icon" className="relative">
-                        <Bell className="h-5 w-5" />
-                    </Button>
+                    <NotificationBell />
                     <UserMenu />
                 </div>
             </div>

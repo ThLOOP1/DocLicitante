@@ -11,6 +11,7 @@ import { useProfileData } from "@/hooks/useProfileData"
 import { ProfileSidebar } from "@/components/perfil/ProfileSidebar"
 import { PersonalInfoForm } from "@/components/perfil/PersonalInfoForm"
 import { AddressForm } from "@/components/perfil/AddressForm"
+import { NotificationSection } from "@/components/perfil/NotificationSection"
 import { SecuritySection } from "@/components/perfil/SecuritySection"
 import { ProfileSkeleton } from "@/components/perfil/ProfileSkeleton"
 
@@ -197,6 +198,12 @@ export default function PerfilPage() {
                 />
               </CardContent>
             </Card>
+
+            <NotificationSection
+              userData={userData}
+              isEditing={isEditing}
+              onChange={updateUserData}
+            />
 
             <SecuritySection userUID={userUID} />
           </div>

@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import Link from "next/link"
-import { UserMenu } from "@/components/user-menu"
+import { AppHeader } from "@/components/layout/AppHeader"
 
 function NotificacoesContent() {
   const [activeTab, setActiveTab] = useState("todas")
@@ -145,30 +145,7 @@ function NotificacoesContent() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-b border-border bg-card">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Link href="/Dashboard" className="flex items-center gap-2">
-                <FileCheck className="h-7 w-7 text-primary" />
-                <h1 className="text-2xl font-semibold text-foreground">DocLicitante</h1>
-              </Link>
-            </div>
-            <div className="flex items-center gap-3">
-              <Button variant="ghost" size="icon" className="relative">
-                <Bell className="h-5 w-5" />
-                {naoLidasCount > 0 && (
-                  <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-destructive text-[10px] font-medium flex items-center justify-center text-destructive-foreground">
-                    {naoLidasCount}
-                  </span>
-                )}
-              </Button>
-              <UserMenu />
-            </div>
-          </div>
-        </div>
-      </header>
+      <AppHeader />
 
       {/* Navigation */}
       <nav className="border-b border-border bg-card">
