@@ -1207,7 +1207,7 @@ app.post('/api/telegram/webhook', async (req, res) => {
 // Endpoint Gatilho (Cron-job.org) para disparar notificações
 app.get('/api/cron/check-vencimentos', async (req, res) => {
     const triggerKey = req.headers['x-cron-key'];
-    
+
     // Verificacao rigorosa (Idêntica e Case Sensitive) do header de segurança
     if (!triggerKey || triggerKey !== process.env.CRON_SECRET_KEY) {
         console.warn('⚠️ [CRON] Tentativa não autorizada de executar o cron job.');
@@ -1230,10 +1230,10 @@ app.get('/api/cron/check-vencimentos', async (req, res) => {
 
 // --- INICIAR SERVIDOR ---
 
-const PORT = process.env.PORT || 3001;
-const server = app.listen(PORT, () => {
-    console.log(`🚀 Servidor rodando na porta ${PORT}`);
-});
+// const PORT = process.env.PORT || 3001;
+// const server = app.listen(PORT, () => {
+//     console.log(`🚀 Servidor rodando na porta ${PORT}`);
+// });
 
 server.on('error', (e) => {
     if (e.code === 'EADDRINUSE') {
@@ -1241,4 +1241,22 @@ server.on('error', (e) => {
     } else {
         console.error(e);
     }
+});
+
+const cors = require('cors');
+
+const corsOptions = {
+    // Removida a barra final para evitar erros de "Mismatch" no navegador
+    origin: ['https://doc-licitante-x2fo.vercel.app', 'http://localhost:3000'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 200 // Importante para navegadores legados e alguns requests do tipo OPTIONS
+};
+
+app.use(cors(corsOptions));
+
+
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
 });
