@@ -6,14 +6,25 @@ require('dotenv').config();
 const app = express();
 
 // --- CONFIGURAÇÃO DE CORS ---
+// const corsOptions = {
+//     origin: ['https://doc-licitante-x2fo.vercel.app', 'http://localhost:3000'],
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     credentials: true,
+//     optionsSuccessStatus: 200
+// };
+// app.use(cors(corsOptions));
+// app.use(express.json());
+
 const corsOptions = {
-    origin: ['https://doc-licitante-x2fo.vercel.app', 'http://localhost:3000'],
+    origin: [
+        'https://doc-licitante.vercel.app', // URL Principal do print
+        'https://doc-licitante-x2fo.vercel.app', // Mantenha a outra por segurança se quiser
+        'http://localhost:3000' // Para você testar no seu PC
+    ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 200
 };
-app.use(cors(corsOptions));
-app.use(express.json());
 
 // --- INICIALIZAÇÃO DO FIREBASE ADMIN ---
 try {
